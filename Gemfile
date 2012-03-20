@@ -31,3 +31,13 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+## add new
+gem 'execjs'
+gem 'therubyracer'
+gem 'rspec-rails'
+gem 'will_paginate'
+gem 'mysql2', '<0.3'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'dynamic_form', :git => 'git://github.com/rails/dynamic_form.git'
+ 

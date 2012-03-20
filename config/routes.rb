@@ -1,4 +1,9 @@
 IshowMe::Application.routes.draw do
+  #users
+  resources :users
+  match "/register" => "users#new" 
+  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

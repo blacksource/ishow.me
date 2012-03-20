@@ -1,0 +1,21 @@
+<div class="row" style="margin-top:100px">
+	<div class="span6 offset3">
+		<%= form_for @user, :url=>{:action=>"create"} do |f| %>
+			<div class="clearfix">
+				<%= f.label :email, "邮箱" %>
+				<%= f.text_field :email, :placeholder=>"blacksource.hw@gmail.com" %>
+			</div>
+			<div class="clearfix">
+				<%= f.label :passowrd, "密码" %>
+				<%= f.password_field :password %>
+			</div>
+			<div class="clearfix">
+				<%= f.label :name, "用户名" %>
+				<%= f.text_field :name %>
+			</div>
+			<div>
+				<%= f.submit "注册", :class=>"btn btn-large btn-primary"%>
+			</div>
+		<% end %>
+	</div>
+</div>
