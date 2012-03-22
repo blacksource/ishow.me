@@ -35,9 +35,11 @@ gem 'jquery-rails'
 gem 'execjs'
 gem 'therubyracer'
 gem 'rspec-rails'
+gem 'capybara'
 gem 'will_paginate'
 gem "mysql2", "~> 0.3.11"
 gem 'carrierwave'
 gem 'rmagick'
 gem 'dynamic_form', :git => 'git://github.com/rails/dynamic_form.git'
+gem 'annotate', '~> 2.4.1.beta'
  
