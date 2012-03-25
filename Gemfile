@@ -1,4 +1,5 @@
-source 'http://rubygems.org'
+#source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.1.1'
 
@@ -29,7 +30,7 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+gem 'ruby-debug'
 
 ## add new
 gem 'execjs'
@@ -42,4 +43,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'dynamic_form', :git => 'git://github.com/rails/dynamic_form.git'
 gem 'annotate', '~> 2.4.1.beta'
- 
+#gem 'omniauth'
+#gem 'omniauth-github'
+gem 'oa-oauth', "~> 0.3.2"
+gem 'rest-client'

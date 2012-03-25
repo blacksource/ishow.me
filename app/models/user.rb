@@ -19,12 +19,17 @@
 class User < ActiveRecord::Base
 	attr_accessor :password
 
-	validates :email, 		:presence => true,
-							:format => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
-							:uniqueness => {:case_sensitive => false}
-	validates :password, 	:length => { :minimum => 6, :maximum => 30 }
-	validates :name, 		:presence => true,
-							:length => { :minimum => 3, :maximum => 20 }
+	validates :email, 		:presence => { :message => "邮箱不能为空" },
+							:format => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, 
+										:message => "邮箱格式不正确" },
+							:uniqueness => {:case_sensitive => false, 
+										:message => "邮箱已存在" }
+	validates :password, 	:length => { :minimum => 6, :maximum => 30, 
+										:message => "请输入6~30位长度的密码" }
+	validates :name, 		:presence => { :message => "用户名不能为空"},
+							:length => { :minimum => 3, :maximum => 20,
+										:message => "请输入6~20位长度的名字" }
+	has_many :authentications
 
 	before_save :encrypt_password
 

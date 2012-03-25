@@ -1,0 +1,26 @@
+<div>
+	<ul>
+		<li>Register</li>
+		<li>Bind</li>
+	</ul>
+	<div><%= image_tag @authentication.image %>欢迎<%=@authentication.user_name%>来到受秀网</div>
+	<%= form_for @user, :url=>{:action=>"bind_new"} do |f| %>
+		<%= render "shared/error_messages", :object=>f.object %>
+		<div class="clearfix">
+			<%= f.label :email, "邮箱" %>
+			<%= f.text_field :email %>
+		</div>
+		<div class="clearfix">
+			<%= f.label :passowrd, "密码" %>
+			<%= f.password_field :password %>
+		</div>
+		<div>
+			<%= hidden_field :authentication, :id, :value=>@authentication.id %>
+			<%= f.hidden_field :name %>
+			<%= f.submit "立即注册", :class=>"btn btn-large btn-primary"%>
+		</div>
+	<% end %>
+</div>
+<div>
+	XX=>ishow.me
+</div>

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120320161156) do
+ActiveRecord::Schema.define(:version => 20120324125105) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider",           :limit => 20
+    t.string   "oauth_token",        :limit => 50
+    t.string   "oauth_token_secret", :limit => 50
+    t.string   "uid",                :limit => 20
+    t.string   "user_name",          :limit => 50
+    t.string   "image",              :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
