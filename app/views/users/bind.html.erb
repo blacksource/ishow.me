@@ -1,9 +1,13 @@
 <div>
-	<ul>
-		<li>Register</li>
-		<li>Bind</li>
-	</ul>
 	<div><%= image_tag @authentication.image %>欢迎<%=@authentication.user_name%>来到受秀网</div>
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#">注册爱秀用户</a>
+		</li>
+		<li>
+			<a href="#">绑定已有用户</a>
+		</li>
+	</ul>
 	<%= form_for @user, :url=>{:action=>"bind_new"} do |f| %>
 		<%= render "shared/error_messages", :object=>f.object %>
 		<div class="clearfix">
@@ -17,7 +21,7 @@
 		<div>
 			<%= hidden_field :authentication, :id, :value=>@authentication.id %>
 			<%= f.hidden_field :name %>
-			<%= f.submit "立即注册", :class=>"btn btn-large btn-primary"%>
+			<%= f.submit "立即注册", :class=>"btn btn-large btn-danger"%>
 		</div>
 	<% end %>
 </div>

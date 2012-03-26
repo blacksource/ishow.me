@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 		@authentication = Authentication.find(params[:id])
 		if @authentication.user_name == params[:name]
 			@user.name = params[:name]
+			@user.email = @authentication.email
 		end			
 	end
 
@@ -26,17 +27,19 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 		aid = params[:authentication][:id]
 
-		authentication = Authentication.find(aid)
-		if authentication && authentication.user_name == @user.name
-			# save user info
+		@authentication = Authentication.find(aid)
+		if @authentication# && authentication.user_name == @user.name
+			if @user.name.blank?
+				@user.name = @user.email
+			end
 			if @user.save
-				authentication.user_id = @user.id
-				authentication.save
+				@authentication.user_id = @user.id
+				@authentication.save
 				redirect_to "/"
+			else
+				render "bind"
 			end
 		end
-
-		@authentication = Authentication.new(params[:authentication])
 	end
 
 	def bind_existed

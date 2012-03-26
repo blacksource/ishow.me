@@ -3,28 +3,32 @@ require 'rest_client'
 
 class TaobaoAuth
 	
-	def users
-		root = "http://gw.api.taobao.com/router/rest"
-		p = {
-			'timestamp' => Time.now.strftime("%Y-%m-%d %H:%M:%S"),  
-			'v' => '2.0',  
-			'app_key' => '12499162',   
-	      	'method' => 'taobao.users.get',  
-	      	'partner_id' => 'top-apitools',
-	      	'format' => 'json',  
-	      	'nicks' => 'blacksource',
-	    	'fields' => 'user_id,nick,sex,buyer_credit,seller_credit,location,created,last_visit'
+	def initialize(app_key, app_secret)
+		@secret = app_secret
+		@url = 'http://gw.api.taobao.com/router/rest?'  
+		@params = {
+			'app_key' => app_key,
+			'format'=> 'json',
+			'v' => '2.0',
+			'timestamp' => Time.new().strftime("%Y-%m-%d %H:%M:%S"),
+			'page_size' => '100'
 		}
-    	p["sign"] = MD5.hexdigest('9598e73bc23ebaaf7eace9d60911ce12' + p.sort.flatten.join + '9598e73bc23ebaaf7eace9d60911ce12').upcase  
-		RestClient.get(root, p).body	
 	end
 
-	def items
-		# url = URI.parse('http://gw.api.tbsandbox.com/router/rest')
-		url = URI.parse("http://www.baidu.com")
-		Net::HTTP.post_form(url, "") 
+	def sign(params, secret_code)  
+		Digest::MD5.hexdigest(params.sort.flatten.unshift(secret_code).join).upcase  
+	end
 
+	def create_request_params params  
+		params.map{|key,value| "#{key}=#{CGI.escape(value.to_s)}"}.join("&")  
+	end
 
-		render :text => RestClient.get("http://gw.api.taobao.com/router/rest?sign=3773C216D5474EC9D868807E4657797E&timestamp=2012-03-25+13%3A28%3A33&v=2.0&app_key=12499162&method=taobao.users.get&partner_id=top-apitools&format=json&nicks=blacksource&fields=user_id,nick,sex,buyer_credit,seller_credit,location,created,last_visit").body
+	def get(params)
+		@params = @params.merge(params)
+		@url = @url + create_request_params(@params.merge('sign' =>sign(@params, @secret)))  
+		data = nil
+		open(@url) do |resp|
+		  data = JSON.parse(resp.read)
+		end
 	end
 end

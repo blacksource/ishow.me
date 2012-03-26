@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
 	validates :password, 	:length => { :minimum => 6, :maximum => 30, 
 										:message => "请输入6~30位长度的密码" }
 	validates :name, 		:presence => { :message => "用户名不能为空"},
-							:length => { :minimum => 3, :maximum => 20,
-										:message => "请输入6~20位长度的名字" }
+							:length => { :minimum => 3, :maximum => 30,
+										:message => "请输入3~30位长度的名字" }
 	has_many :authentications
 
 	before_save :encrypt_password

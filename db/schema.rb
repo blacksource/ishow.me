@@ -15,11 +15,12 @@ ActiveRecord::Schema.define(:version => 20120324125105) do
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider",           :limit => 20
-    t.string   "oauth_token",        :limit => 50
-    t.string   "oauth_token_secret", :limit => 50
-    t.string   "uid",                :limit => 20
+    t.string   "oauth_token",        :limit => 100
+    t.string   "oauth_token_secret", :limit => 100
+    t.string   "uid",                :limit => 50
     t.string   "user_name",          :limit => 50
     t.string   "image",              :limit => 100
+    t.string   "email",              :limit => 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end
