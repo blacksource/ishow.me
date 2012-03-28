@@ -1,29 +1,18 @@
 <div>
-	<div><%= image_tag @authentication.image %>欢迎<%=@authentication.user_name%>来到受秀网</div>
+	<div><%= image_tag @auth.image %>欢迎<%=@auth.user_name%>来到受秀网</div>
 	<ul class="nav nav-tabs">
 		<li class="active">
-			<a href="#">注册爱秀用户</a>
+			<a href="#bind_new" data-toggle="tab">注册爱秀用户</a>
 		</li>
 		<li>
-			<a href="#">绑定已有用户</a>
+			<a href="#bind_exist" data-toggle="tab">绑定已有用户</a>
 		</li>
 	</ul>
-	<%= form_for @user, :url=>{:action=>"bind_new"} do |f| %>
-		<%= render "shared/error_messages", :object=>f.object %>
-		<div class="clearfix">
-			<%= f.label :email, "邮箱" %>
-			<%= f.text_field :email %>
-		</div>
-		<div class="clearfix">
-			<%= f.label :passowrd, "密码" %>
-			<%= f.password_field :password %>
-		</div>
-		<div>
-			<%= hidden_field :authentication, :id, :value=>@authentication.id %>
-			<%= f.hidden_field :name %>
-			<%= f.submit "立即注册", :class=>"btn btn-large btn-danger"%>
-		</div>
-	<% end %>
+	<div class="tab-content">
+		<%= render :partial=>"bind_new", :user=>@user, :auth=>@auth, :active=>"aaaa" %>
+		<%= render :partial => "bind_exist", :user => @user, :auth =>@auth, :active => (@is_new_active.nil?? 'active':'') %>
+	</div>
+	<%=(@is_new_active.nil?? '':'active') %>
 </div>
 <div>
 	XX=>ishow.me

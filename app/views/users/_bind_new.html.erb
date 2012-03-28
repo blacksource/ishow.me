@@ -1,0 +1,22 @@
+<div class="tab-pane active" id="bind_new">
+<%=@active %>
+	<%= form_for @user, :url=>{:action=>"bind_new"} do |f| %>
+		<%= render "shared/error_messages", :object=>f.object %>
+		<div class="clearfix">
+			<%= f.label :name, "用户名" %>
+			<%= f.text_field :name %>
+		</div>
+		<div class="clearfix">
+			<%= f.label :email, "邮箱" %>
+			<%= f.text_field :email %>
+		</div>
+		<div class="clearfix">
+			<%= f.label :passowrd, "密码" %>
+			<%= f.password_field :password %>
+		</div>
+		<div>
+			<%= hidden_field :authentication, :id, :value=>@auth.id %>
+			<%= f.submit "立即注册", :class=>"btn btn-large btn-danger"%>
+		</div>
+	<% end %>
+</div>

@@ -33,6 +33,21 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
 
+	# check user`s email and password is correct
+	def authentication
+		user = User.find_by_email(email)
+		# email is not exist
+		if user.nil?
+			return nil
+		end
+		encrypt_password
+		# password is not correct
+		if password_digest != user.password_digest
+			return this
+		end
+		return user
+	end
+	
 	private
 		def encrypt_password
 			self.password_digest = Digest::MD5.hexdigest(password)

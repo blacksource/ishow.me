@@ -10,6 +10,7 @@ IshowMe::Application.routes.draw do
   match "register" => "users#new"
   match "account/bind" => "users#bind"
   match "account/bind_new" => "users#bind_new"
+  match "account/bind_exist" => "users#bind_exist"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

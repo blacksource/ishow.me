@@ -17,5 +17,15 @@
 require 'spec_helper'
 
 describe Authentication do
-  pending "add some examples to (or delete) #{__FILE__}"
+	before {@auth = Authentication.new(:provider=>"taobao", :oauth_token=>"759904a17a9061e0f9f080b269194c6f", 
+		:uid => "123", :user_name => "blacksource", :image => "http://tp2.sinaimg.cn/1708681445/50/1297435718/1")}
+	subject{@auth}
+
+	it { should respond_to(:provider) }
+	it { should respond_to(:oauth_token) }
+	it { should respond_to(:oauth_token_secret) }
+	it { should respond_to(:uid) }
+	it { should respond_to(:user_name) }
+	it { should respond_to(:image) }
+	
 end

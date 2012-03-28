@@ -1,0 +1,18 @@
+<%=@active %>
+<div class="tab-pane <%=@active %>" id="bind_exist">
+	<%= form_for @user, :url=>{:action=>"bind_exist"} do |f| %>
+		<%= render "shared/error_messages", :object=>f.object %>
+		<div class="clearfix">
+			<%= f.label :email, "邮箱" %>
+			<%= f.text_field :email %>
+		</div>
+		<div class="clearfix">
+			<%= f.label :passowrd, "密码" %>
+			<%= f.password_field :password %>
+		</div>
+		<div>
+			<%= hidden_field :authentication, :id, :value=>@auth.id %>
+			<%= f.submit "立即绑定", :class=>"btn btn-large btn-danger"%>
+		</div>
+	<% end %>		
+</div>
