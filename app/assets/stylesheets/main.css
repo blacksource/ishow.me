@@ -136,7 +136,10 @@ body {
   font-size: 13px;
   line-height: 18px;
   color: #333333;
-  background-color: #ffffff;
+  /*edit by blacksource @2012-03-29 begin*/
+  /*background-color: #ffffff;*/
+  background-color: #F2F0F0;
+  /*edit by blacksource @2012-03-29 end*/
 }
 a {
   color: #0088cc;
@@ -4008,3 +4011,15 @@ a.thumbnail:hover {
 .invisible {
   visibility: hidden;
 }
+
+/*add by blacksource @2012-03-29 begin*/
+.box_shadow{
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+  border-radius: 4px;
+}
+.register-box
+{
+  background-color: #ffffff;
+  padding:20px 60px;
+}
+/*add by blacksource @2012-03-29 end*/

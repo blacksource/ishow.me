@@ -2,7 +2,7 @@ IshowMe::Application.routes.draw do
   match "/" => "home#index"
 
   #auth
-  match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/:provider/callback" => "sessions#oauth"
   match "/signout" => "sessions#destroy"
   
   #users
@@ -11,6 +11,11 @@ IshowMe::Application.routes.draw do
   match "account/bind" => "users#bind"
   match "account/bind_new" => "users#bind_new"
   match "account/bind_exist" => "users#bind_exist"
+
+  #sessions
+  resources :sessions
+  match "login" => "sessions#new"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

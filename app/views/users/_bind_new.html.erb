@@ -1,5 +1,4 @@
-<div class="tab-pane active" id="bind_new">
-<%=@active %>
+<div class="tab-pane <%=@new_active%>" id="bind_new">
 	<%= form_for @user, :url=>{:action=>"bind_new"} do |f| %>
 		<%= render "shared/error_messages", :object=>f.object %>
 		<div class="clearfix">

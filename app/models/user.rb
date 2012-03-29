@@ -43,7 +43,8 @@ class User < ActiveRecord::Base
 		encrypt_password
 		# password is not correct
 		if password_digest != user.password_digest
-			return this
+			self.password_digest = nil
+			return self
 		end
 		return user
 	end

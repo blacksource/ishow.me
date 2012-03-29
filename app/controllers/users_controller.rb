@@ -30,11 +30,17 @@ class UsersController < ApplicationController
 
 		@auth = Authentication.find(aid)
 		if @auth && @auth.user_id.blank?
-			@user.save!
-			#update current created user_id to Authentication.user_id
-			@auth.user_id = @user.id
-			@auth.save!
-			redirect_to "/"
+			if @user.valid?
+				@user.save!
+				#update current created user_id to Authentication.user_id
+				@auth.user_id = @user.id
+				@auth.save!
+				redirect_to "/"
+			else
+				@is_new_active = true
+				render :action => "bind"
+				return
+			end	
 		end
 	end
 
@@ -52,10 +58,10 @@ class UsersController < ApplicationController
 		user_db = @user.authentication
 		if user_db.nil?
 			flash[:notice] = "邮箱不存在!"
-			render :action => "bind", :user=>@user, :auth=>@auth
-		# elseif @user.password_digest.nil?
-		# 	flash[:notice] = "密码不正确!"
-		# 	render :partial => "bind_exist", :user=>@user, :auth=>@auth
+			render "bind"
+		elsif user_db.password_digest.nil?
+			flash[:notice] = "密码不正确!"
+			render "bind"
 		else
 			#bind auth to user
 			@auth.user_id = user_db.id

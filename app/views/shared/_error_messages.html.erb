@@ -1,5 +1,6 @@
 <% if object.errors.any? %>
 	<div class="alert alert-error">
+		<a class="close" data-dismiss="alert">×</a>
 		<div>
 			有以下<%=object.errors.count%>处问题导致无法提交
 		</div>

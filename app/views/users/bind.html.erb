@@ -1,19 +1,23 @@
-<div>
-	<div><%= image_tag @auth.image %>欢迎<%=@auth.user_name%>来到受秀网</div>
-	<ul class="nav nav-tabs">
-		<li class="active">
-			<a href="#bind_new" data-toggle="tab">注册爱秀用户</a>
-		</li>
-		<li>
-			<a href="#bind_exist" data-toggle="tab">绑定已有用户</a>
-		</li>
-	</ul>
-	<div class="tab-content">
-		<%= render :partial=>"bind_new", :user=>@user, :auth=>@auth, :active=>"aaaa" %>
-		<%= render :partial => "bind_exist", :user => @user, :auth =>@auth, :active => (@is_new_active.nil?? 'active':'') %>
+<% @new_active = (@is_new_active.nil?? '':'active')  %>
+<% @exist_active = (@is_new_active.nil?? 'active':'')  %>
+<div class="box_shadow register-box ">
+	<div>
+		<div><%= image_tag @auth.image %>欢迎<%=@auth.user_name%>来到受秀网</div>
+		<ul class="nav nav-tabs">
+			<li class="<%=@new_active%>">
+				<a href="#bind_new" data-toggle="tab">注册爱秀用户</a>
+			</li>
+			<li class="<%=@exist_active%>">
+				<a href="#bind_exist" data-toggle="tab">绑定已有用户</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<%= render "bind_new" %>
+			<%= render "bind_exist" %>
+		</div>
+		<%=%>
 	</div>
-	<%=(@is_new_active.nil?? '':'active') %>
-</div>
-<div>
-	XX=>ishow.me
+	<div>
+		XX=>ishow.me
+	</div>
 </div>

@@ -1,7 +1,11 @@
-<%=@active %>
-<div class="tab-pane <%=@active %>" id="bind_exist">
+<div class="tab-pane <%=@exist_active %>" id="bind_exist">
 	<%= form_for @user, :url=>{:action=>"bind_exist"} do |f| %>
-		<%= render "shared/error_messages", :object=>f.object %>
+		<% if flash[:notice] %>
+			<div class="alert alert-error">
+				<a class="close" data-dismiss="alert">×</a>
+				<%= flash[:notice] %>
+			</div>
+		<% end %>
 		<div class="clearfix">
 			<%= f.label :email, "邮箱" %>
 			<%= f.text_field :email %>
