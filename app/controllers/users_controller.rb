@@ -1,8 +1,32 @@
 class UsersController < ApplicationController
+	before_filter :signed_in_user, :only => [:new, :create]
+
+	# authentication tsina|taobao
+	def oauth
+		@oa = request.env["omniauth.auth"]
+		@auth = Authentication.find_by_provider_and_uid(@oa["provider"], @oa["uid"])
+		unless @auth
+			case @oa["provider"]
+			when "taobao"
+				@auth = TaobaoOauth.get_authentication(@oa) 
+			when "tsina"
+				@auth = SinaOauth.get_authentication(@oa)
+			end
+			@auth.save!
+		end
+		if !@auth.user_id.nil?
+			redirect_to "/"
+			return
+		end
+		redirect_to account_bind_path(:id=>@auth.id, :name=>@auth.user_name)
+	end
+
+	# GET:register new user
 	def new
 		@user = User.new	
 	end
 
+	# POST:save new user
 	def create
 		@user = User.new(params[:user])
 		@user.last_login_ip = request.remote_ip
@@ -14,6 +38,7 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# GET:bind oauth user to ishow user
 	def bind
 		@user = User.new
 		@auth = Authentication.find(params[:id])
@@ -24,6 +49,7 @@ class UsersController < ApplicationController
 		@is_new_active = true
 	end
 
+	# POST:register user and bind oauth user
 	def bind_new
 		@user = User.new(params[:user])
 		aid = params[:authentication][:id]
@@ -44,6 +70,7 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# POST:bind oauth user to exist user
 	def bind_exist
 		@user = User.new(params[:user])
 		aid = params[:authentication][:id]

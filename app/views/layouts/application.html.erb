@@ -9,6 +9,14 @@
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">
+      <div>
+        <ul>
+          <li><a href="#">首页</a></li>
+          <li><a href="#">？？商品</a></li>
+          <li><a href="#"></a></li>
+          <li><a href="#"></a></li>
+        </ul>
+      </div>
       <div class="navbar-inner">
         <div class="container">
           <%= link_to "sample app", '#', :id=> "logo" %>
@@ -21,9 +29,24 @@
           </nav>
         </div>
       </div>
-    </div>
-    <div class="container container_top_dis">
-      <%= yield %>
-    </div>
+      <% if signed_in? %>
+          <div class="btn-group">
+              <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> User</a>
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-pencil"></i>我的主页</a></li>
+                <li><a href="#"><i class="icon-trash"></i>私信</a></li>
+                <li><a href="#"><i class="icon-ban-circle"></i>设置</a></li>
+                <li class="divider"></li>
+                <li><a href="/logout"><i class="icon-pencil"></i>退出</a></li>
+              </ul>
+            </div>
+        </div>
+      <% else %>
+        <%= link_to login_path "请登录" %>
+      <% end %>
+      <div class="container container_top_dis">
+        <%= yield %>
+      </div>
 </body>
 </html>

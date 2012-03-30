@@ -4,6 +4,7 @@
 require 'md5'  
 
 require 'rest_client'
+require 'oauth/taobao_oauth'
 
 class HomeController < ApplicationController
 	def index
@@ -26,6 +27,13 @@ class HomeController < ApplicationController
 		# render :text => @res.body
 		# debugger
 
-
+		taobao = TaobaoOauth.new("12499162","9598e73bc23ebaaf7eace9d60911ce12")
+			# params = {
+			# 'method' => 'taobao.trades.bought.get',
+			# 'fields' => 'seller_nick,orders.oid,orders.title,tid,orders.num_iid,orders.price,orders.sku_id,orders.status,orders.pic_path,created,end_time',
+			# 'session' => '6100a207e2ee3debaab6777387bb1125ad031cb57987ed215602777'
+		 #  }
+		 params = {'session' => '6100a207e2ee3debaab6777387bb1125ad031cb57987ed215602777'}
+		@data = taobao.get_trades_bought(params)
 	end
 end

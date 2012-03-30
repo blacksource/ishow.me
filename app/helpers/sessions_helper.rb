@@ -28,7 +28,12 @@ module SessionsHelper
 	end
 
 	def sign_out
+		logger.debug "============aaaaaaaaaaaaa"
 		current_user = nil
 		cookies.delete(:user_id)
 	end
+
+	def signed_in_user
+    	redirect_to root_path unless !signed_in?
+  	end
 end
