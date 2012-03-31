@@ -1,0 +1,25 @@
+<ul class="unstyled">
+	<% @products.each do |product| %>
+		<li class="row">
+			<div class="span2">
+				<div>
+					$:<%= product.price %>
+				</div>
+				<div>
+					<ul>
+						<li>No1:</li>
+						<li>No2:</li>
+						<li>No3:</li>
+					</ul>
+				</div>
+				<div>
+					剩余名额:
+					剩余时间:
+				</div>
+			</div>
+			<div class="span6">
+				<img src="/products/<%=product.image%>"/>
+			</div>
+		</li>
+	<% end %>
+</ul>

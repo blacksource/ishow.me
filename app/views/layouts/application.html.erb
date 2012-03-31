@@ -9,17 +9,15 @@
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">
-      <div>
-        <ul>
-          <li><a href="#">首页</a></li>
-          <li><a href="#">？？商品</a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-        </ul>
-      </div>
       <div class="navbar-inner">
         <div class="container">
           <%= link_to "sample app", '#', :id=> "logo" %>
+          <ul class="nav ">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">？？商品</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+          </ul>
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "Home",    '#' %></li>
@@ -27,6 +25,7 @@
               <li><%= link_to "Sign in", '#' %></li>
             </ul>
           </nav>
+
         </div>
       </div>
       <% if signed_in? %>

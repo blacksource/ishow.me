@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324125105) do
+ActiveRecord::Schema.define(:version => 20120331131934) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(:version => 20120324125105) do
     t.string   "user_name",          :limit => 50
     t.string   "image",              :limit => 100
     t.string   "email",              :limit => 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price",           :precision => 10, :scale => 0
+    t.string   "image"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "max_share_count"
+    t.integer  "shared_count"
+    t.string   "status"
+    t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

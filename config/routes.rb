@@ -18,6 +18,9 @@ IshowMe::Application.routes.draw do
   match "login" => "sessions#new"
   match "logout" => "sessions#destroy"
 
+  #products
+  resources :products
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
