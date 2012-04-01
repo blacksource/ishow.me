@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331131934) do
+ActiveRecord::Schema.define(:version => 20120401135452) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -26,15 +26,34 @@ ActiveRecord::Schema.define(:version => 20120331131934) do
   end
 
   create_table "products", :force => true do |t|
-    t.string   "name"
-    t.decimal  "price",           :precision => 10, :scale => 0
-    t.string   "image"
+    t.string   "name",            :limit => 100
+    t.decimal  "price",                          :precision => 10, :scale => 0
+    t.string   "image_url"
+    t.string   "source_url"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "max_share_count"
     t.integer  "shared_count"
-    t.string   "status"
+    t.string   "status",                                                        :default => "A"
     t.integer  "created_by"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rebates", :force => true do |t|
+    t.integer  "level"
+    t.decimal  "amount",     :precision => 10, :scale => 0
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shops", :force => true do |t|
+    t.integer  "sid"
+    t.string   "url"
+    t.string   "title"
+    t.integer  "saller_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

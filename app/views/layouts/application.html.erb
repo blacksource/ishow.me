@@ -42,7 +42,8 @@
             </div>
         </div>
       <% else %>
-        <%= link_to login_path "请登录" %>
+
+        <%= link_to "请登录", login_path  %>
       <% end %>
       <div class="container container_top_dis">
         <%= yield %>

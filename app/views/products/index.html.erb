@@ -1,25 +1,45 @@
-<ul class="unstyled">
-	<% @products.each do |product| %>
-		<li class="row">
-			<div class="span2">
-				<div>
-					$:<%= product.price %>
-				</div>
-				<div>
-					<ul>
-						<li>No1:</li>
-						<li>No2:</li>
-						<li>No3:</li>
-					</ul>
-				</div>
-				<div>
-					剩余名额:
-					剩余时间:
-				</div>
-			</div>
-			<div class="span6">
-				<img src="/products/<%=product.image%>"/>
-			</div>
-		</li>
-	<% end %>
-</ul>
+<div class="row">
+	<div class="span10">
+		<ul class="unstyled">
+			<% @products.each do |product| %>
+				<li class="row border">
+					<h3><%= product.name %></h3>
+					<div class="span2">
+						<div>
+							<div>
+								$:<%= product.price %><a href="/">Buy</a>
+							</div>
+							<div>
+								get rabet:<a href="/">Share</a>
+							</div>
+						</div>
+						<div>
+							<ul class="unstyled">
+								<% product.rebates.each do |rebate| %>
+									<% if rebate.level != 99 %>
+										<li><%= "第#{rebate.level}名，返利￥#{rebate.amount}" %></li>	
+									<% else %>
+										<li><%= "其余，返利￥#{rebate.amount}" %></li>	
+									<% end %>
+									
+								<% end %>
+							</ul>
+						</div>
+						<div>
+							<div>剩余名额:25</div>
+
+							<div>剩余时间:30天14小时24分12秒</div>
+						</div>
+					</div>
+					<div class="span6">
+						<img src="/products/<%=product.image_url%>"/>
+					</div>
+				</li>
+			<% end %>
+		</ul>
+		<%= will_paginate @post %>
+	</div>
+	<div class="span2">
+		aaaaaaa
+	</div>	
+</div>
