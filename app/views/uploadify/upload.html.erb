@@ -1,0 +1,10 @@
+<li>
+	<div>
+		<img src="<%= @picture.picture.url %>"/>
+		<input name="share_pictures[][picture_url]" type="hidden" value="<%= @picture.picture.url%>" />
+	</div>
+	<div>
+		<div><input type="radio" name="cover"/><label>设为封面</label></div>
+		<div><input type="button" value="删除" /></div>
+	</div>
+</li>

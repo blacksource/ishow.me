@@ -1,0 +1,18 @@
+<ul>
+	<% @trades.each do |trade| %>
+		<li>
+			tid:<%= trade.tid %>
+			seller_nick:<%= trade.seller_nick %>
+
+			<ul>
+				<% trade.orders.each do |order| %>
+					<li>
+						title:<%= order.title %>
+						pic_path:<%= order.pic_path %>
+					</li>
+				<% end %>
+			</ul>
+		</li>
+	<% end %>
+</ul>
+<%= will_paginate @trades %>

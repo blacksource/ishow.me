@@ -5,48 +5,42 @@
   <%= stylesheet_link_tag    "main" %>
   <%= javascript_include_tag "jquery1.7.2" %>
   <%= javascript_include_tag "ui" %>
+  <%= javascript_include_tag :all %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "sample app", '#', :id=> "logo" %>
-          <ul class="nav ">
-            <li><a href="#">首页</a></li>
-            <li><a href="#">？？商品</a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-          </ul>
+          <%= link_to "Logo", '#', :id=> "logo" %>
           <nav>
-            <ul class="nav pull-right">
-              <li><%= link_to "Home",    '#' %></li>
-              <li><%= link_to "Help",    '#' %></li>
-              <li><%= link_to "Sign in", '#' %></li>
+            <ul class="nav ">
+              <li><%= link_to "首页", '/' %></li>
+              <li><%= link_to "热销商品", products_path %></li>
             </ul>
           </nav>
-
+          <div class="pull-right">
+            <% if signed_in? %>
+              <div class="btn-group">
+                <a class="btn btn-primary" href="#"><img class="head_m" src="http://tp2.sinaimg.cn/1708681445/50/1297435718/1"></a>
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="icon-pencil"></i>我的主页</a></li>
+                  <li><a href="#"><i class="icon-trash"></i>私信</a></li>
+                  <li><a href="#"><i class="icon-ban-circle"></i>设置</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/logout"><i class="icon-pencil"></i>退出</a></li>
+                </ul>
+              </div>
+            <% else %>
+              <%= link_to "请登录", login_path  %>
+            <% end %>
+          </div>
         </div>
       </div>
-      <% if signed_in? %>
-          <div class="btn-group">
-              <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> User</a>
-              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><i class="icon-pencil"></i>我的主页</a></li>
-                <li><a href="#"><i class="icon-trash"></i>私信</a></li>
-                <li><a href="#"><i class="icon-ban-circle"></i>设置</a></li>
-                <li class="divider"></li>
-                <li><a href="/logout"><i class="icon-pencil"></i>退出</a></li>
-              </ul>
-            </div>
-        </div>
-      <% else %>
-
-        <%= link_to "请登录", login_path  %>
-      <% end %>
-      <div class="container container_top_dis">
-        <%= yield %>
-      </div>
+    </div>
+    <div class="container container_top_dis">
+      <%= yield %>
+    </div>
 </body>
 </html>

@@ -11,6 +11,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer   :shared_count
       t.string    :status,          :default=>'A'
       t.integer   :created_by
+      t.text      :detail 
       # t.integer   :shop_id          
       t.references  :shop
       

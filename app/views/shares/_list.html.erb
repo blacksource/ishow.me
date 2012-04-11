@@ -1,0 +1,10 @@
+<ul>
+	<% @product.shares.each do |share| %>
+		<li>
+			<h3><%=share.comment%></h3>
+			<% share.share_pictures.each do |pic| %>
+				<%= image_tag "#{pic.picture_url}" %>	
+			<% end %>
+		</li>
+	<% end %>
+</ul>

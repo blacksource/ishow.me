@@ -22,6 +22,11 @@ Product.create(:name=>"FPI 啡色时尚休闲高跟鞋", :price=>"456", :image_u
 	:status=>"A", :source_url=>"http://product.m18.com/p-A123211.htm")
 end
 
+Product.update_all :detail=>"<img src=\"http://img4.m18.com/IMG2009/others/20120315/12P2-ali.jpg\">
+	<img src=\"http://img4.m18.com/IMG2009/others/20120315/R123054_01.jpg\">
+	<img src=\"http://img4.m18.com/IMG2009/others/20120315/R123054_02.jpg\">
+	<img src=\"http://img4.m18.com/IMG2009/others/20120315/R123054_03.jpg\">"
+
 
 Rebate.create(:product_id=>1, :level=>1, :amount=>300)
 Rebate.create(:product_id=>1, :level=>2, :amount=>200)

@@ -24,11 +24,13 @@ module SessionsHelper
 		user_id = cookies[:user_id]
 		if user_id
 			User.find(cookies[:user_id])
+			# @current_user = User.find(cookies[:user_id])
+			# @current_user.auths = @current_user.authentications
+			# return @current_user
 		end
 	end
 
 	def sign_out
-		logger.debug "============aaaaaaaaaaaaa"
 		current_user = nil
 		cookies.delete(:user_id)
 	end

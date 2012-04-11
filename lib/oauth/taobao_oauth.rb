@@ -47,6 +47,8 @@ class TaobaoOauth
 		@params = @params.merge(params)
 		@url = @url + create_request_params(@params.merge('sign' =>sign(@params, @secret)))  
 		RestClient.get(@url)
+		# @trades = RestClient.get(@url)
+		# JSON.parse(@trades)["trades_bought_get_response"]["trades"]
 	end
 
 	def self.get_authentication(oa)

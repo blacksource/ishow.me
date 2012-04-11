@@ -1,0 +1,19 @@
+<%= provide(:title, '设置个人信息') %>
+
+<%= form_for @user do |f| %>
+	<div class="clearfix">
+		<%= f.label :name, "用户名" %>
+		<%= f.text_field :name %>
+	</div>
+	<div class="clearfix">
+		<%= f.label :realname, "真实姓名" %>
+		<%= f.text_field :realname %>
+	</div>
+	<div class="clearfix">
+		<%= f.label :sex, "性  别" %>
+		<%= f.radio_button :sex, 'F' %>
+		<%= f.label :sex, '女' %>
+		<%= f.radio_button :sex, 'M' %>
+		<%= f.label :sex, '男' %>
+	</div>
+<% end %>

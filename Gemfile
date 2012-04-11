@@ -41,6 +41,7 @@ gem 'will_paginate'
 gem "mysql2", "~> 0.3.11"
 gem 'carrierwave'
 gem 'rmagick'
+gem 'mini_magick'
 gem 'dynamic_form', :git => 'git://github.com/rails/dynamic_form.git'
 gem 'annotate', '~> 2.4.1.beta'
 #gem 'omniauth'

@@ -1,0 +1,50 @@
+<div class="row">
+	<h3><%= @product.name %></h3>
+	<div class="span2">
+		<div>
+			<div>
+				$:<%= @product.price %><a href="/">Buy</a>
+			</div>
+			<div>
+				get rabet:<a href="/">Share</a>
+			</div>
+		</div>
+		<div>
+			<ul class="unstyled">
+				<% @product.rebates.each do |rebate| %>
+					<% if rebate.level != 99 %>
+						<li><%= "第#{rebate.level}名，返利￥#{rebate.amount}" %></li>	
+					<% else %>
+						<li><%= "其余，返利￥#{rebate.amount}" %></li>	
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+		<div>
+			<div>剩余名额:25</div>
+
+			<div>剩余时间:30天14小时24分12秒</div>
+		</div>
+	</div>
+	<div class="span6">
+		<img src="/products/<%=@product.image_url%>"/>
+	</div>
+</div>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#product_detail" data-toggle="tab">产品明细</a></li>
+	<li><a href="#product_shares" data-toggle="tab">晒单</a></li>
+	<li><a href="/products/<%=@product.id%>/comments"  data-toggle="tab">评论</a></li>
+	<li><%= link_to "test", "shares", :remote=>true%></li>
+</ul>
+
+<div id="test">
+	sbc
+</div>
+<div class="tab-content">
+	<div id="product_detail" clsss="tab-pane product_detail">
+		<%=raw @product.detail %>	
+	</div>	
+	<div id="product_shares" class="tab-pane">
+		<%= render "shares/list" %>
+	</div>
+</div>

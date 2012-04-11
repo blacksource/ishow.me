@@ -13,13 +13,27 @@ IshowMe::Application.routes.draw do
   match "account/bind_new" => "users#bind_new"
   match "account/bind_exist" => "users#bind_exist"
 
+  #profiles
+  match "profiles/:id/setting" => "profiles#edit_userinfo", :as => :edit_userinfo_profile
+
   #sessions
   resources :sessions
   match "login" => "sessions#new"
   match "logout" => "sessions#destroy"
 
   #products
-  resources :products
+  match "products/shares" => "products#shares"
+  resources :products do
+    resources :shares  
+  end
+  match "shares/create" => "shares#create"
+
+  # uploadify
+  match "uploadify/upload" => "uploadify#upload"
+  match "uploadify/check" => "uploadify#check"
+
+  # trades
+  match "trades" => "trades#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

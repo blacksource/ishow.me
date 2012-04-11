@@ -3,14 +3,14 @@
 		<ul class="unstyled">
 			<% @products.each do |product| %>
 				<li class="row border">
-					<h3><%= product.name %></h3>
+					<a href="/products/<%=product.id%>"><h3><%= product.name%></h3></a>
 					<div class="span2">
 						<div>
 							<div>
-								$:<%= product.price %><a href="/">Buy</a>
+								¥:<%= product.price %><%= link_to "购买", product.source_url%>
 							</div>
 							<div>
-								get rabet:<a href="/">Share</a>
+								要返利就:<%=link_to "晒单", new_product_share_path(product)%>
 							</div>
 						</div>
 						<div>
@@ -27,17 +27,16 @@
 						</div>
 						<div>
 							<div>剩余名额:25</div>
-
 							<div>剩余时间:30天14小时24分12秒</div>
 						</div>
 					</div>
 					<div class="span6">
-						<img src="/products/<%=product.image_url%>"/>
+						<%= link_to image_tag("/products/#{product.image_url}"), product %>
 					</div>
 				</li>
 			<% end %>
 		</ul>
-		<%= will_paginate @post %>
+		<%= will_paginate @products %>
 	</div>
 	<div class="span2">
 		aaaaaaa
