@@ -4016,6 +4016,26 @@ a.thumbnail:hover {
 }
 
 /*add by blacksource @2012-03-29 begin*/
+.logo{
+  float:left;
+  width:130px;
+  height:40px;
+  margin-right:20px;
+  background:url(/assets/logo.png)
+}
+.logo a{
+  width:130px;
+  height:40px;
+  display: block;
+}
+.top_menu li{
+  font-size: 15px;
+  font-weight: bold;
+  border-left: 1px solid #CCC;
+}
+.top_menu li:hover{
+  background-color:#C4247E;
+}
 .box_shadow{
   box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
   border-radius: 4px;
@@ -4034,9 +4054,54 @@ a.thumbnail:hover {
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
 }
-.head_m
-{
-  width:20px;
-  height:20px;
+.head_m{
+  width:30px;
+  height:30px;
+}
+.product_list>li{
+  padding: 5px 10px 5px 10px;
+  height:260px;
+}
+.footer{
+  bottom:10px;
+  margin-top:20px;
+  margin-bottom:20px;
+  text-align:center;
+  line-height:50px;
+  background-color:#fff
 }
 /*add by blacksource @2012-03-29 end*/
+/*add by blacksource @2012-04-12 for:gototop begin*/
+p#go_top{
+    position:fixed;
+    bottom: 10px;
+    right:10px;
+}
+p#go_top a{
+    text-align:center;
+    text-decoration:none;
+    color:#d1d1d1;
+    display:block;
+    width:70px;
+    -moz-transition:color 1s;
+    -webkit-transition:color 1s;
+    -o-transition:color 1s;
+}
+p#go_top a:hover{
+    color:#979797;
+}
+p#go_top a span{
+    background:#d1d1d1 url(gotop.png) no-repeat 0 0;
+    border-radius:6px;
+    display:block;
+    height:60px;
+    width:70px;
+    margin-bottom:5px;
+    -moz-transition:background 1s;
+    -webkit-transition:background 1s;
+    -o-transition:background 1s;
+}
+#go_top a:hover span{
+    background:#979797 url(gotop.png) no-repeat 0 0;
+}
+/*add by blacksource @2012-04-12 end*/
