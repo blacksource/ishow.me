@@ -1,32 +1,29 @@
-<div class="row">
-	<h3><%= @product.name %></h3>
-	<div class="span2">
+<a href="/products/<%=@product.id%>"><h3><%= @product.name%></h3></a>
+<div class="prod_l">
+	<div class="prod_l_line">
 		<div>
-			<div>
-				$:<%= @product.price %><a href="/">Buy</a>
-			</div>
-			<div>
-				get rabet:<a href="/">Share</a>
-			</div>
+			¥:<%= @product.price %><%= link_to "购买", @product.source_url , :target=>"_blank"%>
 		</div>
 		<div>
-			<ul class="unstyled">
-				<% @product.rebates.each do |rebate| %>
-					<% if rebate.level != 99 %>
-						<li><%= "第#{rebate.level}名，返利￥#{rebate.amount}" %></li>	
-					<% else %>
-						<li><%= "其余，返利￥#{rebate.amount}" %></li>	
-					<% end %>
+			要返利就:<%=link_to "晒单", new_product_share_path(@product)%>
+		</div>
+	</div>
+	<div class="prod_l_line">
+		<ul class="unstyled">
+			<% @product.rebates.each do |rebate| %>
+				<% if rebate.level != 99 %>
+					<li><%= "第#{rebate.level}名，返利￥#{rebate.amount}" %></li>	
+				<% else %>
+					<li><%= "其余，返利￥#{rebate.amount}" %></li>	
 				<% end %>
-			</ul>
-		</div>
-		<div>
-			<div>剩余名额:25</div>
-
-			<div>剩余时间:30天14小时24分12秒</div>
-		</div>
+			<% end %>
+		</ul>
 	</div>
-	<div class="span6">
-		<img src="/products/<%=@product.image_url%>"/>
+	<div class="prod_l_line">
+		<div>剩余名额:25</div>
+		<div>剩余时间:30天14小时24分12秒</div>
 	</div>
+</div>
+<div class="span6">
+	<%= link_to image_tag("/products/#{@product.image_url}"), @product %>
 </div>

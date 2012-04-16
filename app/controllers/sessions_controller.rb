@@ -2,10 +2,13 @@ require "oauth/taobao_oauth.rb"
 require "oauth/sina_oauth.rb"
 
 class SessionsController < ApplicationController
-	before_filter :signed_in_user, :only => [:new, :create]
+	# before_filter :signed_in_user, :only => [:create]
 
 	# GET:login
 	def new
+		if signed_in?
+			redirect_to root_path
+		end
 		@user = User.new
 	end
 

@@ -1,49 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= full_title(yield(:title))%></title>
-  <%= stylesheet_link_tag    "main" %>
-  <%= javascript_include_tag "jquery1.7.2" %>
-  <%= javascript_include_tag "ui" %>
-  <%= javascript_include_tag :main %>
-  <%= csrf_meta_tags %>
+    <title><%= full_title(yield(:title))%></title>
+    <%= stylesheet_link_tag    "main" %>
+    <%= javascript_include_tag "jquery1.7.2" %>
+    <%= javascript_include_tag "ui" %>
+    <%= javascript_include_tag :main %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="logo">
-            <%= link_to "", '/' %>  
-          </div>
-          <ul class="nav top_menu">
-            <li><%= link_to "首页", '/' %></li>
-            <li><%= link_to "热销商品", products_path %></li>
-          </ul>
-          <div class="pull-right">
-            <% if signed_in? %>
-              <div class="btn-group">
-                <a class="btn btn-primary" href="#"><img class="head_m" src="http://tp2.sinaimg.cn/1708681445/50/1297435718/1"></a>
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-pencil"></i>我的主页</a></li>
-                  <li><a href="#"><i class="icon-trash"></i>私信</a></li>
-                  <li><a href="#"><i class="icon-ban-circle"></i>设置</a></li>
-                  <li class="divider"></li>
-                  <li><a href="/logout"><i class="icon-pencil"></i>退出</a></li>
-                </ul>
-              </div>
-            <% else %>
-              <%= link_to "请登录", login_path  %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render "shared/header" %>
     <div class="container container_top_dis">
-      <%= yield %>
+        <%= yield %>
     </div>
-    <div class="footer box_shadow container">
-      Copyright ©2012 Meilishuo.com. All Rights Reserved. 京ICP备11031139号  京ICP证100798号  京公网安备110108006045  
-    </div>
+    <%= render "shared/footer" %>
 </body>
 </html>

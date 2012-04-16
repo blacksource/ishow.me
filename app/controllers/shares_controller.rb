@@ -1,7 +1,22 @@
 class SharesController < ApplicationController
+	before_filter :signed_in_user, :only => [:new, :create]
+
 	def new
+		# synchronize taobao trades
+		if current_user.session.nil?
+			flash[:notice] = "please bind taobao"
+			return
+		end
+		Trade.sync_trades(provider("taobao"), current_user.id, current_user.session)
+		
 		@product = Product.find(params[:product_id])
 		@share = Share.new(:product_id=>@product.id)
+
+		if Trade.have_bought(current_user.id, @product.num_iid)
+			flash[:notice] = "You have bought"
+		else
+			flash[:notice] = "you have not bought"
+		end
 	end
 
 	def create

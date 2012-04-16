@@ -23,10 +23,13 @@ module SessionsHelper
 	def user_from_cookie
 		user_id = cookies[:user_id]
 		if user_id
-			User.find(cookies[:user_id])
-			# @current_user = User.find(cookies[:user_id])
-			# @current_user.auths = @current_user.authentications
-			# return @current_user
+			# User.find(cookies[:user_id])
+			@current_user = User.find(cookies[:user_id])
+			taobao_auth = @current_user.authentications.where(:provider=>"taobao").first;
+			if !taobao_auth.nil?
+				@current_user.session = taobao_auth.oauth_token
+			end
+			return @current_user
 		end
 	end
 
@@ -36,6 +39,21 @@ module SessionsHelper
 	end
 
 	def signed_in_user
-    	redirect_to root_path unless !signed_in?
+    	# redirect_to root_path unless !signed_in?
+    	if !signed_in?
+    		redirect_to login_path
+    	end
+  	end
+
+  	def providers
+  		@providers ||= Provider.all
+  	end
+
+  	def provider(name)
+  		providers.each do |p|
+  			if p.provider_name == name
+  				return p
+  			end
+  		end
   	end
 end

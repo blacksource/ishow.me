@@ -1804,7 +1804,10 @@ table .span24 {
   display: inline-block;
   width: 0;
   height: 0;
-  vertical-align: top;
+  /*edited by blacksource @2012-04-14 begin*/
+  /*vertical-align: top;*/
+  vertical-align: center;
+  /*edited by blacksource @2012-04-14 end*/
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid #000000;
@@ -4016,12 +4019,23 @@ a.thumbnail:hover {
 }
 
 /*add by blacksource @2012-03-29 begin*/
+.clearfix{
+  padding: 8px 0px;
+}
+.clearfix label{
+  float: left;
+  width: 60px;
+  text-align:right;
+  line-height: 35px;
+  font-size:15px;
+  margin-right:10px; 
+}
 .logo{
   float:left;
   width:130px;
   height:40px;
   margin-right:20px;
-  background:url(/assets/logo.png)
+  background:url(logo.png)
 }
 .logo a{
   width:130px;
@@ -4036,12 +4050,13 @@ a.thumbnail:hover {
 .top_menu li:hover{
   background-color:#C4247E;
 }
-.box_shadow{
+.box, .reg_box{
+  display: block;
+  background-color: #ffffff;
   box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
   border-radius: 4px;
 }
-.register-box{
-  background-color: #ffffff;
+.reg_box{
   padding:20px 60px;
 }
 .border{
@@ -4054,18 +4069,33 @@ a.thumbnail:hover {
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
 }
-.head_m{
+.top_head{
+  display: block;
+}
+.top_head img{
   width:30px;
   height:30px;
 }
-.product_list>li{
-  padding: 5px 10px 5px 10px;
+.prod_list>li{
   height:260px;
+  padding: 10px;
+}
+.prod_l{
+  float:left;
+  width:180px;
+  height:auto !important;
+  background: url(prod_l_bg.jpg) repeat-y;
+}
+.prod_l_line{
+  border-bottom: 1px solid #DDD;
+  width:95%;
+  padding: 10px 0px;
 }
 .footer{
   bottom:10px;
   margin-top:20px;
   margin-bottom:20px;
+  padding: 10px 0px 10px 0px;
   text-align:center;
   line-height:50px;
   background-color:#fff

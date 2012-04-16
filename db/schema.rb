@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120410133054) do
+ActiveRecord::Schema.define(:version => 20120414155204) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -19,8 +19,11 @@ ActiveRecord::Schema.define(:version => 20120410133054) do
     t.string   "oauth_token_secret", :limit => 100
     t.string   "uid",                :limit => 50
     t.string   "user_name",          :limit => 50
-    t.string   "image",              :limit => 100
+    t.string   "avatar",             :limit => 100
+    t.string   "sex",                :limit => 1
     t.string   "email",              :limit => 50
+    t.datetime "birthday"
+    t.string   "type",               :limit => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20120410133054) do
     t.decimal  "price",                          :precision => 10, :scale => 0
     t.string   "image_url"
     t.string   "source_url",      :limit => 500
+    t.string   "num_iid",         :limit => 50
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "max_share_count"
@@ -51,6 +55,16 @@ ActiveRecord::Schema.define(:version => 20120410133054) do
     t.integer  "created_by"
     t.text     "detail"
     t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "providers", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "app_key"
+    t.string   "app_secret"
+    t.string   "provider_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20120410133054) do
   end
 
   create_table "share_pictures", :force => true do |t|
-    t.string   "picture_url"
+    t.string   "pic_url"
     t.integer  "show_order"
     t.integer  "share_id"
     t.datetime "created_at"
@@ -113,12 +127,13 @@ ActiveRecord::Schema.define(:version => 20120410133054) do
     t.string   "email"
     t.string   "name"
     t.string   "password_digest"
-    t.string   "sex",             :default => "F"
+    t.string   "sex",             :default => ""
     t.string   "status",          :default => "A"
     t.date     "birthday"
     t.datetime "last_login_at"
     t.string   "last_login_ip"
     t.string   "realname"
+    t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

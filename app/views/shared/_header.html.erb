@@ -1,0 +1,44 @@
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<div class="logo">
+				<%= link_to "", '/' %>  
+			</div>
+			<ul class="nav top_menu">
+				<li><%= link_to "首页", '/' %></li>
+				<li><%= link_to "热销商品", products_path %></li>
+			</ul>
+			<div class="pull-right">
+				<div class="btn-group">
+					<% if signed_in? %>
+						<a class="dropdown-toggle top_head" data-toggle="dropdown" href="#">
+						<%= image_tag current_user.avatar %>
+						<span><%= current_user.name %></span>
+						<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="/profile"><i class="icon-pencil"></i>我的主页</a>
+							</li>
+							<li>
+								<a href="/messages"><i class="icon-trash"></i>私信</a>
+							</li>
+							<li>
+								<a href="/profile/setting"><i class="icon-ban-circle"></i>设置</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="/logout"><i class="icon-pencil"></i>退出</a>
+							</li>
+						</ul>
+					<% else %>
+						<ul class="nav">
+							<%= link_to "注册", register_path  %>			
+							<%= link_to "登录", login_path  %>
+						</ul>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

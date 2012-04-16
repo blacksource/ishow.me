@@ -1,10 +1,17 @@
-<ul>
+<ul class="unstyled">
 	<% @product.shares.each do |share| %>
 		<li>
-			<h3><%=share.comment%></h3>
-			<% share.share_pictures.each do |pic| %>
-				<%= image_tag "#{pic.picture_url}" %>	
-			<% end %>
+			<div class="row">
+				<div class="span1">
+					<%= image_tag share.user.avatar %>
+				</div>
+				<div class="span8"><a href="/profile/<%=share.user.id%>"><%=share.user.name%></a>:<%=share.comment%></div>		
+			</div>
+			<div class="row">
+				<% share.share_pictures.each do |pic| %>
+					<%= image_tag "/shares/#{pic.pic_url}" %>	
+				<% end %>
+			</div>
 		</li>
 	<% end %>
 </ul>

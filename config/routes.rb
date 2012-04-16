@@ -14,7 +14,7 @@ IshowMe::Application.routes.draw do
   match "account/bind_exist" => "users#bind_exist"
 
   #profiles
-  match "profiles/:id/setting" => "profiles#edit_userinfo", :as => :edit_userinfo_profile
+  match "profiles/setting" => "profiles#edit_userinfo", :as => :edit_userinfo_profile
 
   #sessions
   resources :sessions

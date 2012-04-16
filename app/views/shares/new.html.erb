@@ -1,10 +1,10 @@
 <link href="/assets/uploadify/uploadify.css" media="screen" rel="stylesheet" type="text/css">
-
-<%= render "/products/item", :product=>@product %>
+<%= flash[:notice] %>
+<h3><%= @product.name %></h3>
 <%= form_for @share, :url=>"/shares/create" do |f| %>
 	<div>
 		<span>评价:</span>
-		<%= f.text_area :comment, :class=>"text_input", :rows=>"3" %>
+		<%= f.text_area :comment, :class=>"text_input", :rows=>"2" %>
 	</div>
 	<div>
 		<span>上传图片:</span>

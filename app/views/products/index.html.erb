@@ -1,38 +1,9 @@
 <div>
 	<div class="span10">
-		<ul class="unstyled product_list">
-			<% @products.each do |product| %>
+		<ul class="unstyled prod_list">
+			<% @products.each do |@product| %>
 				<li class="row border">
-					<a href="/products/<%=product.id%>"><h3><%= product.name%></h3></a>
-					<div class="span2">
-						<div>
-							<div>
-								¥:<%= product.price %><%= link_to "购买", product.source_url%>
-							</div>
-							<div>
-								要返利就:<%=link_to "晒单", new_product_share_path(product)%>
-							</div>
-						</div>
-						<div>
-							<ul class="unstyled">
-								<% product.rebates.each do |rebate| %>
-									<% if rebate.level != 99 %>
-										<li><%= "第#{rebate.level}名，返利￥#{rebate.amount}" %></li>	
-									<% else %>
-										<li><%= "其余，返利￥#{rebate.amount}" %></li>	
-									<% end %>
-									
-								<% end %>
-							</ul>
-						</div>
-						<div>
-							<div>剩余名额:25</div>
-							<div>剩余时间:30天14小时24分12秒</div>
-						</div>
-					</div>
-					<div class="span6">
-						<%= link_to image_tag("/products/#{product.image_url}"), product %>
-					</div>
+					<%= render "item" %>
 				</li>
 			<% end %>
 		</ul>

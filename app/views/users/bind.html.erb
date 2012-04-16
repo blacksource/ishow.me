@@ -1,8 +1,8 @@
 <% @new_active = (@is_new_active.nil?? '':'active')  %>
 <% @exist_active = (@is_new_active.nil?? 'active':'')  %>
 <div class="box_shadow register-box ">
-	<div>
-		<div><%= image_tag @auth.image %>欢迎<%=@auth.user_name%>来到受秀网</div>
+	<div class="span6">
+		<div><%= image_tag @auth.avatar %>欢迎"<%=@auth.user_name%>"来到受秀网</div>
 		<ul class="nav nav-tabs">
 			<li class="<%=@new_active%>">
 				<a href="#bind_new" data-toggle="tab">注册爱秀用户</a>
@@ -16,7 +16,7 @@
 			<%= render "bind_exist" %>
 		</div>
 	</div>
-	<div>
+	<!-- <div class="span2">
 		XX=>ishow.me
-	</div>
+	</div> -->
 </div>

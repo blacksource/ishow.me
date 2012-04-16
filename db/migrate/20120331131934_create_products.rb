@@ -5,6 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal   :price,           :nil=>false
       t.string    :image_url,       :limit=>255
       t.string    :source_url,      :limit=>500
+      t.string    :num_iid,         :limit=>50
       t.datetime  :start_time
       t.datetime  :end_time
       t.integer   :max_share_count

@@ -1,5 +1,5 @@
 <%= provide(:title, '登录') %>
-<div class="box_shadow register-box ">
+<div class="reg_box">
 	<div class="span6">
 		<h3>登录爱秀网</h3>
 		<%= form_for @user, :url=>{:action=>"create"} do |f| %>
@@ -17,17 +17,14 @@
 				<%= f.label :passowrd, "密码" %>
 				<%= f.password_field :password %>
 			</div>
-			<div>
-				<%= f.submit "登录", :class=>"btn btn-large btn-primary"%>
+			<div class="clearfix">
+				<label></label>
+				<%= f.submit "登录", :class=>"btn btn-large btn-danger"%>
 			</div>
 		<% end %>
 	</div>
 	<div class="span2">
-		<h3>其他方式登录</h3>
-		<ul>
-			<li><a href="/auth/taobao"><img src="/assets/taobao.png"/></a></li>
-			<li><a href="/auth/tsina"><img src="/assets/weibo.png"/></a></li>
-			<li><%= link_to image_tag("weibo.png"), '/auth/tsina', :title=>"link to sina weibo" %></li>
-		</ul>
+		<%= render "shared/bind_login" %>
 	</div>
+	<div style="clear:both"></div>
 </div>

@@ -17,7 +17,7 @@
 #
 
 class User < ActiveRecord::Base
-	attr_accessor :password
+	attr_accessor :password, :session
 
 	validates :email, 		:presence => { :message => "邮箱不能为空" },
 							:format => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, 
@@ -28,8 +28,11 @@ class User < ActiveRecord::Base
 										:message => "请输入6~30位长度的密码" }
 	validates :name, 		:presence => { :message => "用户名不能为空"},
 							:length => { :minimum => 3, :maximum => 30,
-										:message => "请输入3~30位长度的名字" }
+										:message => "请输入3~30位长度的名字" },
+							:uniqueness => {:case_sensitive => false, 
+										:message => "用户名已存在" }
 	has_many :authentications
+	has_many :shares
 
 	before_save :encrypt_password
 

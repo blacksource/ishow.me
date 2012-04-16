@@ -1,3 +1,5 @@
+require 'oauth/taobao_oauth'
+
 class UsersController < ApplicationController
 	before_filter :signed_in_user, :only => [:new, :create]
 
@@ -8,7 +10,8 @@ class UsersController < ApplicationController
 		unless @auth
 			case @oa["provider"]
 			when "taobao"
-				@auth = TaobaoOauth.get_authentication(@oa) 
+				taobao_provider = provider("taobao");
+				@auth = TaobaoOauth.get_authentication(@oa, taobao_provider.app_key, taobao_provider.app_secret) 
 			when "tsina"
 				@auth = SinaOauth.get_authentication(@oa)
 			end
@@ -57,7 +60,11 @@ class UsersController < ApplicationController
 		@auth = Authentication.find(aid)
 		if @auth && @auth.user_id.blank?
 			if @user.valid?
+				@user.avatar = @auth.avatar
+				@user.sex = @auth.sex
+				@user.birthday = @auth.birthday
 				@user.save!
+				sign_in(@user)
 				#update current created user_id to Authentication.user_id
 				@auth.user_id = @user.id
 				@auth.save!
@@ -90,6 +97,7 @@ class UsersController < ApplicationController
 			flash[:notice] = "密码不正确!"
 			render "bind"
 		else
+			sign_in(@user)
 			#bind auth to user
 			@auth.user_id = user_db.id
 			@auth.save!
